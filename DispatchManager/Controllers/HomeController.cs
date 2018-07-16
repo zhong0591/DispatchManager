@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿ 
 using System.Web.Mvc;
+ 
 
 namespace DispatchManager.Controllers
 {
@@ -11,7 +9,7 @@ namespace DispatchManager.Controllers
 
 
         public ActionResult Index()
-        {
+        { 
             return View();
         }
 

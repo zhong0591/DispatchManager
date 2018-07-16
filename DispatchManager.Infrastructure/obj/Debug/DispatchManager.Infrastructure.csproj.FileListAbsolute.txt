@@ -27,3 +27,5 @@ D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\System.W
 D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\System.Web.WebPages.Razor.xml
 D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\System.Web.Razor.xml
 D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\Newtonsoft.Json.dll
+D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\Newtonsoft.Json.xml

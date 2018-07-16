@@ -50,3 +50,5 @@ D:\001_Current\DispatchManager\DispatchManager.Services\bin\Debug\Microsoft.AspN
 D:\001_Current\DispatchManager\DispatchManager.Services\bin\Debug\Microsoft.Owin.xml
 D:\001_Current\DispatchManager\DispatchManager.Services\obj\Debug\DispatchManager.Services.dll
 D:\001_Current\DispatchManager\DispatchManager.Services\obj\Debug\DispatchManager.Services.pdb
+D:\001_Current\DispatchManager\DispatchManager.Services\bin\Debug\Newtonsoft.Json.dll
+D:\001_Current\DispatchManager\DispatchManager.Services\bin\Debug\Newtonsoft.Json.xml

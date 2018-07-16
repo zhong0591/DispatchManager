@@ -47,3 +47,6 @@ D:\001_Current\DispatchManager\DispatchManager.Data\bin\Debug\System.Web.WebPage
 D:\001_Current\DispatchManager\DispatchManager.Data\bin\Debug\System.Web.WebPages.Razor.xml
 D:\001_Current\DispatchManager\DispatchManager.Data\obj\Debug\DispatchManager.Data.dll
 D:\001_Current\DispatchManager\DispatchManager.Data\obj\Debug\DispatchManager.Data.pdb
+D:\001_Current\DispatchManager\DispatchManager.Data\obj\Debug\DispatchManager.Data.csprojResolveAssemblyReference.cache
+D:\001_Current\DispatchManager\DispatchManager.Data\bin\Debug\Newtonsoft.Json.dll
+D:\001_Current\DispatchManager\DispatchManager.Data\bin\Debug\Newtonsoft.Json.xml

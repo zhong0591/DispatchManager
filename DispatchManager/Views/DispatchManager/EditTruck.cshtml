@@ -1,7 +1,134 @@
-﻿
+﻿ 
+@model DispatchManager.ViewModel.TruckViewModel
 @{
-    ViewBag.Title = "EditTruck";
+    ViewBag.Title = "Edit Truck";
 }
 
-<h2>EditTruck</h2>
+<script>
+
+    $(function () {
+
+        
+
+    })
+
+    function loadTruckViaVinNumber() {
+        var vinNumber = $("#VinNumber").val();
+        if (vinNumber == "") {
+            alert("Please input vin number.");
+            $("#VinNumber").focus();
+            return;
+        } else {
+            location.href = "/DispatchManager/EditTruck?vinNumber=" + vinNumber;
+        }
+
+    }
+        
+</script>
+
+<h2>Dispatch Manager</h2>
+<hr />
+@using (Html.BeginForm("SaveTruck", "DispatchManager", FormMethod.Post,  new { @class = "form-horizontal", role = "form" }))
+{ 
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.TruckName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.TruckName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.VinNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.VinNumber, new { @class = "form-control" })
+        
+           <a href="javascript:loadTruckViaVinNumber()">get truck information via this vin number</a>  
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ManufacturerName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ManufacturerName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Make, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Make, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Model, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Model, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ModelYear, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ModelYear, new { @class = "form-control" })
+        </div>
+    </div>
+     
+    <div class="form-group">
+        @Html.LabelFor(m => m.EngineModel, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.EngineModel, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.EngineModel, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.EngineModel, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Capacity, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Capacity, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TransmissionSpeeds, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.TransmissionSpeeds, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TransmissionSpeeds, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.TransmissionSpeeds, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TransmissionStyle, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.TransmissionStyle, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.VehicleType, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.VehicleType, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Odemetor, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Odemetor, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Submit" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
 

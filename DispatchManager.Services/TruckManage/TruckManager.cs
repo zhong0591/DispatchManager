@@ -26,7 +26,16 @@ namespace DispatchManager.Services.TruckManage
                     var existedTruck = uow.Get(truck.Id);
                     existedTruck.ManufacturerName = truck.ManufacturerName;
                     existedTruck.TruckName = truck.TruckName;
-                    existedTruck.VinNumber = truck.VinNumber; 
+                    existedTruck.VinNumber = truck.VinNumber;
+                    existedTruck.Make = truck.Make;
+                    existedTruck.Model = truck.Model;
+                    existedTruck.ModelYear = truck.ModelYear;
+                    existedTruck.EngineModel = truck.EngineModel;
+                    existedTruck.TransmissionSpeeds = truck.TransmissionSpeeds;
+                    existedTruck.Capacity = truck.Capacity;
+                    existedTruck.TransmissionStyle = truck.TransmissionStyle;
+                    existedTruck.Odemetor = truck.Odemetor;
+                    existedTruck.VehicleType = truck.VehicleType;  
                     Uow.Commit(); 
                 }
                 else
@@ -35,9 +44,18 @@ namespace DispatchManager.Services.TruckManage
                     {
                         ManufacturerName = truck.ManufacturerName,
                         TruckName = truck.TruckName,
-                        VinNumber = truck.VinNumber
+                        VinNumber = truck.VinNumber,
+                        Make = truck.Make,
+                        Model = truck.Model,
+                        ModelYear = truck.ModelYear,
+                        EngineModel = truck.EngineModel,
+                        TransmissionSpeeds = truck.TransmissionSpeeds,
+                        Capacity = truck.Capacity,
+                        TransmissionStyle = truck.TransmissionStyle,
+                        Odemetor = truck.Odemetor,
+                        VehicleType = truck.VehicleType,
                     };
-
+                    uow.Add(truck);
                     Uow.Commit();
                     return truck;
                 }

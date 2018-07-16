@@ -82,3 +82,5 @@ D:\001_Current\DispatchManager\DispatchManger.Tests\bin\Debug\Microsoft.Owin.Hos
 D:\001_Current\DispatchManager\DispatchManger.Tests\obj\Debug\DispatchManger.Tests.csprojResolveAssemblyReference.cache
 D:\001_Current\DispatchManager\DispatchManger.Tests\obj\Debug\DispatchManger.Tests.dll
 D:\001_Current\DispatchManager\DispatchManger.Tests\obj\Debug\DispatchManger.Tests.pdb
+D:\001_Current\DispatchManager\DispatchManger.Tests\bin\Debug\Newtonsoft.Json.dll
+D:\001_Current\DispatchManager\DispatchManger.Tests\bin\Debug\Newtonsoft.Json.xml
