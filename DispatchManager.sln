@@ -11,7 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispatchManager.Infrastruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispatchManager.Services", "DispatchManager.Services\DispatchManager.Services.csproj", "{42C84895-C40D-4039-8EF7-FA208B786B87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispatchManger.Tests", "DispatchManger.Tests\DispatchManger.Tests.csproj", "{99B6425F-ED1E-4646-8545-38DF403C49BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispatchManger.Services.Tests", "DispatchManger.Tests\DispatchManger.Services.Tests.csproj", "{99B6425F-ED1E-4646-8545-38DF403C49BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispatchManager.MVC.Tests", "DispatchManagerTests\DispatchManager.MVC.Tests.csproj", "{865E3C60-608D-42AD-94B4-1B59CF7A86BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{99B6425F-ED1E-4646-8545-38DF403C49BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99B6425F-ED1E-4646-8545-38DF403C49BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99B6425F-ED1E-4646-8545-38DF403C49BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{865E3C60-608D-42AD-94B4-1B59CF7A86BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{865E3C60-608D-42AD-94B4-1B59CF7A86BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{865E3C60-608D-42AD-94B4-1B59CF7A86BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{865E3C60-608D-42AD-94B4-1B59CF7A86BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

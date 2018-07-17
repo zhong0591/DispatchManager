@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,7 +9,8 @@ namespace DispatchManager.Data.Models
     public class Truck
     {
         public int Id { get; set; }
-        public string TruckName { get; set; }
+        [Required]
+        public string TruckName { get; set; } 
         public string VinNumber { get; set; }
         public string Capacity { get; set; }
         public string Odemetor { get; set; }

@@ -11,18 +11,15 @@ using System.Data.SqlClient;
 
 namespace DispatchManager.Services.TruckManage
 {
-    public class TruckManager : ManagerBase, ITruckManager
-    {
-        
-
+    public class DispatchManager : ManagerBase, ITruckManager
+    { 
         public Truck SaveOrUpdate(Truck truck)
-        {
-
+        { 
             var uow = Uow.Reposiotry<Truck>();
             try
             {
                 if (truck.Id > 0)
-                {
+                { 
                     var existedTruck = uow.Get(truck.Id);
                     existedTruck.ManufacturerName = truck.ManufacturerName;
                     existedTruck.TruckName = truck.TruckName;

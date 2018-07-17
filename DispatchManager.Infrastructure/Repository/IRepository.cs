@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity.Core.Objects; 
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -26,6 +27,7 @@ namespace DispatchManager.Infrastructure.Repository
         void Reload(T entity, RefreshMode mode);
         void Reload(IEnumerable<T> entities);
         void Reload(IEnumerable<T> entities, RefreshMode mode);
+        List<DbValidationError> ValidateModel(T model);
 
         IList<string> GetEntityModifiedProperties(T entity);
         IList<TValue> GetEntityValues<TValue>(T entity, string propertyName);

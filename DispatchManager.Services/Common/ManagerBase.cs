@@ -44,33 +44,6 @@ namespace DispatchManager.Services.Common
                 ((IDisposable)_uow).Dispose();
             }
             _uow = null;
-        }
-        //protected string GetNextNewNumberByKey(string seedKey)
-        //{
-        //    using (var trans = Uow.CreateTransaction(System.Transactions.IsolationLevel.ReadCommitted, 60))
-        //    {
-        //        var rep = Uow.Reposiotry<XatSSeed>();
-        //        var seed = rep.Query().FirstOrDefault(o => o.SeedKey == seedKey);
-        //        if (seed == null)
-        //        {
-        //            seed = new XatSSeed();
-        //            seed.SeedKey = seedKey;
-        //            seed.SeedValue = 1;
-        //            rep.Add(seed);
-        //        }
-        //        else
-        //        {
-        //            seed.SeedValue++;
-
-        //        }
-        //        Uow.Commit();
-        //        trans.Complete();
-        //        string seedNumber = seed.SeedValue.ToString();
-        //        return seedNumber;
-        //    }
-        //}
-
-      
-        
+        } 
     }
 }

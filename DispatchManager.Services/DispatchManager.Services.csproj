@@ -127,11 +127,16 @@
     <Compile Include="Common\DisposableBase.cs" />
     <Compile Include="Common\IManagerBase.cs" />
     <Compile Include="Common\ManagerBase.cs" />
+    <Compile Include="DispatchManage\Response.cs" />
+    <Compile Include="DispatchManage\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DispatchManage\TruckAPI.cs" />
     <Compile Include="TruckManage\ITruckManager.cs" />
     <Compile Include="TruckManage\TruckManager.cs" />
-    <Compile Include="VinNumberManage\IVinNumberManager.cs" />
-    <Compile Include="VinNumberManage\VinNumberManager.cs" />
+    <Compile Include="DispatchManage\DispatchManager.cs" />
+    <Compile Include="DispatchManage\ITruckAPI.cs" />
+    <Compile Include="DispatchManage\IDispatchManager.cs" />
+    <Compile Include="DispatchManage\OpResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -1,15 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using DispatchManager.Infrastructure.Repository;
 using DispatchManager.Services.DispatchManage;
-using DispatchManager.Services.TruckManage;
-using DispatchManager.Services.VinNumberManage;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -43,7 +34,8 @@ namespace DispatchManager
             builder.RegisterFilterProvider();
             builder.RegisterType<Services.DispatchManage.DispatchManager>().As<IDispatchManager>();
             builder.RegisterType<TruckAPI>().As<ITruckAPI>();
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+             
+
             // MVC - Set the dependency resolver to be Autofac.
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

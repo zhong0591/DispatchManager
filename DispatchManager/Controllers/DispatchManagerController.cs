@@ -10,12 +10,12 @@ namespace DispatchManager.Controllers
     { 
         private IDispatchManager dispatchManager { get; set; }
         private ITruckAPI truckApi { get; set; } 
-        private IUnitOfWork uow { get; set; }
-        public DispatchManagerController(IDispatchManager dispatchManager, ITruckAPI truckApi,IUnitOfWork uow)
+        
+        public DispatchManagerController(IDispatchManager dispatchManager, ITruckAPI truckApi )
         {
             this.dispatchManager = dispatchManager;
             this.truckApi = truckApi;
-            this.uow = uow;
+            
         }
 
         public ActionResult EditMultiTruck() {
@@ -50,7 +50,7 @@ namespace DispatchManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                dispatchManager.SaveTruck(uow, truck);
+                dispatchManager.SaveTruck( truck);
                 return RedirectToAction("EditTruck");
             } 
             return View(truck); 

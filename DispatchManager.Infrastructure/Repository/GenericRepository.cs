@@ -5,10 +5,9 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
-
-
 
 namespace DispatchManager.Infrastructure.Repository
 {
@@ -16,6 +15,16 @@ namespace DispatchManager.Infrastructure.Repository
     {
         private DbSet<T> _dbSet;
         private DbContext _dbContext;
+
+        public List<DbValidationError> ValidateModel(T model)
+        {
+            DbEntityValidationResult vResult = _dbContext.Entry<T>(model).GetValidationResult();
+            if (vResult == null)
+                return new List<DbValidationError>();
+            if (vResult.IsValid)
+                return new List<DbValidationError>();
+            return vResult.ValidationErrors.ToList();
+        }
 
         public GenericRepository(DbContext context)
         {
@@ -119,5 +128,6 @@ namespace DispatchManager.Infrastructure.Repository
             values.Add(entityEntry.CurrentValues.GetValue<TValue>(propertyName));
             return values;
         }
+
     }
 }
