@@ -1,27 +1,28 @@
 ﻿using DispatchManager.Data.Models;
-using DispatchManager.Services.TruckManage;
-using DispatchManager.Services.VinNumberManage;
+using DispatchManager.Infrastructure.Repository;
+using DispatchManager.Services.DispatchManage;
 using DispatchManager.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace DispatchManager.Controllers
 {
     public class DispatchManagerController : Controller
-    {
-
-        private ITruckManager truckManager { get; set; }
-        private IVinNumberManager vinNumberManager { get; set; }
-        public DispatchManagerController(ITruckManager truckManager, IVinNumberManager vinNumberManager)
+    { 
+        private IDispatchManager dispatchManager { get; set; }
+        private ITruckAPI truckApi { get; set; } 
+        private IUnitOfWork uow { get; set; }
+        public DispatchManagerController(IDispatchManager dispatchManager, ITruckAPI truckApi,IUnitOfWork uow)
         {
-            this.truckManager = truckManager;
-            this.vinNumberManager = vinNumberManager;
+            this.dispatchManager = dispatchManager;
+            this.truckApi = truckApi;
+            this.uow = uow;
         }
 
+        public ActionResult EditMultiTruck() {
+
+            return View();
+        }
+        
 
         public ActionResult EditTruck(string vinNumber)
         {
@@ -29,7 +30,7 @@ namespace DispatchManager.Controllers
 
             if (!string.IsNullOrEmpty(vinNumber))
             {
-                var result = vinNumberManager.GetTruckInfo(vinNumber);
+                var result = Search(vinNumber);
                 if (result != null)
                 {
                     model.ManufacturerName = result.ManufacturerName;
@@ -38,23 +39,27 @@ namespace DispatchManager.Controllers
                     model.ModelYear = result.ModelYear;
                     model.TransmissionSpeeds = result.TransmissionSpeeds;
                     model.TransmissionStyle = result.TransmissionStyle;
+                    model.Odemetor = result.Odemetor;
                 }
-
             }
             return View(model);
-        }
-
-
+        } 
 
         [HttpPost]
         public ActionResult SaveTruck(Truck truck)
         {
             if (ModelState.IsValid)
             {
-                truckManager.SaveOrUpdate(truck);
+                dispatchManager.SaveTruck(uow, truck);
                 return RedirectToAction("EditTruck");
             } 
-            return View(); 
+            return View(truck); 
+        }
+
+        public Truck Search(string vinNbr)
+        {
+           return dispatchManager.SearchTruck(truckApi, vinNbr);
+            
         }
     }
 }

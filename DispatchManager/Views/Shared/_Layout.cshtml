@@ -19,11 +19,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Edit Truck", "EditTruck", "DispatchManager", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Edit Truck", "EditTruck", "DispatchManager")</li>
+                    <li>@Html.ActionLink("Edit Multiple Truck", "EditMultiTruck", "DispatchManager")</li>
                     
                 </ul>
                 @Html.Partial("_LoginPartial")

@@ -306,6 +306,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\DispatchManager\EditTruck.cshtml" />
+    <Content Include="Views\DispatchManager\EditMultiTruck.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -322,6 +323,10 @@
     <ProjectReference Include="..\DispatchManager.Data\DispatchManager.Data.csproj">
       <Project>{cdddeee4-7bb8-4d8e-b0a6-05275adce55c}</Project>
       <Name>DispatchManager.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DispatchManager.Infrastructure\DispatchManager.Infrastructure.csproj">
+      <Project>{592E2C0B-EE58-47D9-9B11-7F9850B0B467}</Project>
+      <Name>DispatchManager.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\DispatchManager.Services\DispatchManager.Services.csproj">
       <Project>{42c84895-c40d-4039-8ef7-fa208b786b87}</Project>
