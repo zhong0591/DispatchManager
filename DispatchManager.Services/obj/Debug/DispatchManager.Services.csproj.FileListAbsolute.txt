@@ -52,3 +52,6 @@ D:\001_Current\DispatchManager\DispatchManager.Services\obj\Debug\DispatchManage
 D:\001_Current\DispatchManager\DispatchManager.Services\obj\Debug\DispatchManager.Services.pdb
 D:\001_Current\DispatchManager\DispatchManager.Services\bin\Debug\Newtonsoft.Json.dll
 D:\001_Current\DispatchManager\DispatchManager.Services\bin\Debug\Newtonsoft.Json.xml
+D:\001_Current\DispatchManager\DispatchManager.Services\bin\Debug\AutoMapper.dll
+D:\001_Current\DispatchManager\DispatchManager.Services\bin\Debug\AutoMapper.pdb
+D:\001_Current\DispatchManager\DispatchManager.Services\bin\Debug\AutoMapper.xml

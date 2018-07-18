@@ -29,3 +29,8 @@ D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\System.W
 D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\Newtonsoft.Json.dll
 D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\Newtonsoft.Json.xml
+D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\AutoMapper.dll
+D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\System.ValueTuple.dll
+D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\AutoMapper.pdb
+D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\AutoMapper.xml
+D:\001_Current\DispatchManager\DispatchManager.Infrastructure\bin\Debug\System.ValueTuple.xml
