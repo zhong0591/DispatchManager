@@ -76,11 +76,11 @@ namespace DispatchManager.Controllers
         public ActionResult SaveTruck(Truck truck)
         {
             if (ModelState.IsValid)
-            {
-                var result =  dispatchManager.SaveTruck( truck);
+            { 
+                var result = dispatchManager.SaveTruck(truck);
                 if (result.Ok)
                 {
-                    return View();
+                    return View("index");
                 }
                 else {
                     var strErr = string.Join(";", result.Errors);

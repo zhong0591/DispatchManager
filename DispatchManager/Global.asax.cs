@@ -1,6 +1,9 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using AutoMapper;
+using DispatchManager.Data.Models;
 using DispatchManager.Services.DispatchManage;
+using DispatchManager.ViewModel;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -12,15 +15,11 @@ namespace DispatchManager
     {
         protected void Application_Start()
         {
-              AutoFac();
+            AutoFac(); 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-          
-
-
+            BundleConfig.RegisterBundles(BundleTable.Bundles); 
         }
 
         private void AutoFac() {

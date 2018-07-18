@@ -103,3 +103,6 @@ D:\001_Current\DispatchManager\DispatchManager\bin\Moq.xml
 D:\001_Current\DispatchManager\DispatchManager\bin\System.Threading.Tasks.Extensions.xml
 D:\001_Current\DispatchManager\DispatchManager\bin\System.ValueTuple.xml
 D:\001_Current\DispatchManager\DispatchManager\bin\DispatchManager.Infrastructure.pdb
+D:\001_Current\DispatchManager\DispatchManager\bin\AutoMapper.dll
+D:\001_Current\DispatchManager\DispatchManager\bin\AutoMapper.pdb
+D:\001_Current\DispatchManager\DispatchManager\bin\AutoMapper.xml
