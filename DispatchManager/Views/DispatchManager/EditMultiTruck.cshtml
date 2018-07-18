@@ -1,0 +1,216 @@
+﻿@model List<DispatchManager.Data.Models.Truck>
+@{
+    ViewBag.Title = "EditMultiTruck";
+
+   
+}
+
+<script>
+    $(function () {
+
+        $("#tab-trucks").find("li").each(function () {
+            $(this).click(function () {
+                var id = $(this).prop("id").replace("li_", "");
+                $(this).addClass("active").siblings().removeClass("active");
+                $("#" +id).show().siblings().hide();
+            })
+        })
+
+        $("#tab-trucks").find("li").first().click(); 
+
+        $(":button[name='btnSubmit']").each(function () {
+            $(this).click(function () {
+                var form = $(this).closest("form");
+                postForm(form); 
+            }) 
+        })
+
+        $("#btnSearch").click(function () {
+            var vinNumbers = $("#txtVinNumbers").val();
+            if (vinNumbers == "") {
+                alert("vin numbers is required.");
+                return;
+            }
+
+            if (vinNumbers.split("|").length > 5) {
+                alert("Can not search more than 5 vin numbers.")
+                return;
+            }
+
+            location.href = "/DispatchManager/EditMultiTruck?vinNumbers=" + vinNumbers;
+        })
+    })
+
+    function postForm(form) {
+        var truckName = form.find("#truck_TruckName"); 
+        if (truckName.val() == "") {
+            $("#lblTruckNameError").show();
+            return;
+        } else {
+            $("#lblTruckNameError").hide();
+        }
+         
+        $.ajax({ 
+            type: "POST", 
+            dataType: "json", 
+            url: "/DispatchManager/SaveMultiTruck",
+            data: form.serialize(),
+            success: function (result) {
+                var panel = form.closest(".tab-panel");
+                var id = panel.prop("id");
+                console.log(id)
+                if (result) { 
+                    $("#" + id).remove();  
+                    $("#li_" + id).remove();
+                    $("#tab-trucks").find("li").click(); 
+                };
+            },
+            error: function () {
+                alert("Errors！");
+            }
+        });
+
+    }
+  
+
+</script>
+<br />
+<h2>Edit Multiple Vin Numbers</h2>
+
+<div>
+    <div class="input-group">
+        <input type="text" class="form-control" style="min-width:100%" id="txtVinNumbers"  placeholder="vin numbers" aria-describedby="basic-addon2">
+        <span class="input-group-addon" id="btnSearch" >Search</span>
+    </div>
+    <label class="label label-info">you can input no more than 5 vin numbers, split by '|'. </label>
+</div>
+<br />
+@if (Model != null)
+{
+    var names = Model.Select(x => x.VinNumber).ToArray();
+    var tabIndex = 0;
+    var contentIndex = 0;
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="tab-trucks">
+            @foreach (var name in names)
+            {
+                tabIndex++;
+                <li id="li_Truck_@tabIndex" role="presentation" class="active"><a href="#Truck_@tabIndex" aria-controls="@name" role="tab" data-toggle="tab">@name</a></li>
+            }
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            @foreach (var truck in Model)
+            {
+                contentIndex++;
+                <div role="tabpanel" class="tab-panel active" id="Truck_@contentIndex">
+
+                    @using (Html.BeginForm("SaveTruck", "DispatchManager", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(t => truck.TruckName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(t => truck.TruckName, new { @class = "form-control" })
+                            </div>
+                            <label class="label label-danger"  style="display:none" id="lblTruckNameError">Truck name is required.</label>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(t => truck.VinNumber, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(t => truck.VinNumber, new { @class = "form-control", @disabled = true })
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(t => truck.ManufacturerName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(t => truck.ManufacturerName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(t => truck.Make, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(t => truck.Make, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(t => truck.Model, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(t => truck.Model, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(t => truck.ModelYear, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(t => truck.ModelYear, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(t => truck.EngineModel, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(t => truck.EngineModel, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(t => truck.EngineModel, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(t => truck.EngineModel, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(t => truck.Capacity, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(t => truck.Capacity, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(t => truck.TransmissionSpeeds, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(t => truck.TransmissionSpeeds, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(t => truck.TransmissionSpeeds, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(t => truck.TransmissionSpeeds, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(t => truck.TransmissionStyle, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(t => truck.TransmissionStyle, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(t => truck.VehicleType, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(t => truck.VehicleType, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(t => truck.Odemetor, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(t => truck.Odemetor, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="button" class="btn btn-default" value="Submit" name="btnSubmit" />
+                                </div>
+                            </div>
+                    }
+
+                </div>
+            }
+        </div>
+    </div>
+}
+
+ 
+
+
+

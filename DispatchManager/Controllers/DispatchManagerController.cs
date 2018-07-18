@@ -1,5 +1,4 @@
 ﻿using DispatchManager.Data.Models;
-using DispatchManager.Infrastructure.Repository;
 using DispatchManager.Services.DispatchManage;
 using DispatchManager.ViewModel;
 using System.Web.Mvc;
@@ -18,11 +17,39 @@ namespace DispatchManager.Controllers
             
         }
 
-        public ActionResult EditMultiTruck() {
-
+        public ActionResult Index() {
             return View();
         }
-        
+
+        public ActionResult EditMultiTruck(string vinNumbers) {
+
+            var trucks = dispatchManager.SearchMultiTruck(truckApi, vinNumbers);
+            if(trucks == null){
+                return View();
+            } 
+            return View(trucks);
+        }
+
+
+        [HttpPost]
+        public JsonResult SaveMultiTruck(Truck truck)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = dispatchManager.SaveTruck(truck);
+                if (result.Ok)
+                {
+                    return new JsonResult() { Data = true };
+                }
+                else
+                {
+                    var strErr = string.Join(";", result.Errors); 
+                    return new JsonResult() { Data = strErr };
+                }
+            }
+            return new JsonResult() { Data = false };
+        }
+
 
         public ActionResult EditTruck(string vinNumber)
         {
@@ -30,7 +57,7 @@ namespace DispatchManager.Controllers
 
             if (!string.IsNullOrEmpty(vinNumber))
             {
-                var result = Search(vinNumber);
+                var result = dispatchManager.SearchTruck(truckApi, vinNumber);
                 if (result != null)
                 {
                     model.ManufacturerName = result.ManufacturerName;
@@ -50,16 +77,17 @@ namespace DispatchManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                dispatchManager.SaveTruck( truck);
-                return RedirectToAction("EditTruck");
+                var result =  dispatchManager.SaveTruck( truck);
+                if (result.Ok)
+                {
+                    return View();
+                }
+                else {
+                    var strErr = string.Join(";", result.Errors);
+                    ModelState.AddModelError("Error:", strErr);
+                }  
             } 
             return View(truck); 
-        }
-
-        public Truck Search(string vinNbr)
-        {
-           return dispatchManager.SearchTruck(truckApi, vinNbr);
-            
-        }
+        } 
     }
 }
