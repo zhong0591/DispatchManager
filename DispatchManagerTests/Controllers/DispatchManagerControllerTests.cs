@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using AutoMapper;
 using DispatchManager.Data.Models;
 using DispatchManager.Infrastructure.Repository;
 using DispatchManager.Services.Common;
@@ -19,43 +20,44 @@ namespace DispatchManager.Controllers.Tests
         public Mock<ITruckAPI> truckApi;
         public DispatchManagerController ctrl;
         [SetUp]
-        public void Init()
+        public void DispatchManager_SetUp()
         {
             dispatchManager = new Mock<IDispatchManager>();
             truckApi = new Mock<ITruckAPI>(); 
             ctrl = new DispatchManagerController(dispatchManager.Object, truckApi.Object);
+            Mapper.Initialize(cfg => cfg.CreateMap<TruckViewModel, Truck>()); 
         }
 
         [Test]
-        public void IndexTest()
+        public void Test_Index()
         {
             var result = ctrl.Index();
             Assert.IsInstanceOf(typeof(ActionResult), result);
         }
 
         [Test]
-        public void SaveTruckTest()
-        { 
-            var truck = new Truck() { TruckName = "Truck Name is BMW" };
-            dispatchManager.Setup(x => x.SaveTruck(truck)).Returns(new OpResult() { Ok = true, Errors = new List<string>() { "new error" } });
+        public void Test_Save_Truck_Return_View()
+        {  
+            dispatchManager.Setup(foo => foo.SaveTruck(It.IsAny<Truck>())).Returns(new OpResult() { Ok = true });
 
-            var result = ctrl.SaveTruck(truck);
+            var tv = new TruckViewModel() { TruckName = "New Name", ActiveSafetySystemNote = "Active Safety System Note" };           
+            var result = ctrl.SaveTruck(tv);
             Assert.IsInstanceOf(typeof(ActionResult), result); 
         }
 
         [Test]
-        public void SaveMultiTruckTest()
+        public void Test_Save_Multiple_Truck_Return_View()
         {
-            var truck = new Truck() { TruckName = "Truck Name is BMW" };
-            var op = dispatchManager.Setup(x => x.SaveTruck(truck)).Returns(new OpResult() { Ok = true, Errors = new List<string>() { "new error" } });
+            dispatchManager.Setup(foo => foo.SaveTruck(It.IsAny<Truck>())).Returns(new OpResult() { Ok = true});
+            var tv = new TruckViewModel() { TruckName = "New Name", ActiveSafetySystemNote = "Active Safety System Note" };
 
-            var result = ctrl.SaveMultiTruck(truck);
+            var result = ctrl.SaveMultiTruck(tv);
             Assert.IsInstanceOf(typeof(JsonResult), result);
             Assert.IsTrue((bool)result.Data);
         }
 
         [Test]
-        public void EditMultiTruckTest()
+        public void Test_Edit_Multiple_Truck_Return_View()
         {
             string vinNumbers = string.Empty; 
             var result = ctrl.EditMultiTruck(vinNumbers); 
@@ -71,7 +73,7 @@ namespace DispatchManager.Controllers.Tests
         }
 
         [Test]
-        public void EditTruckTest()
+        public void Test_Edit_Truck_Return_View()
         { 
             var result = ctrl.EditTruck(string.Empty);
             Assert.IsInstanceOf(typeof(ActionResult), result);

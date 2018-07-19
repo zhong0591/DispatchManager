@@ -1,4 +1,5 @@
-﻿using DispatchManager.Data.Models;
+﻿using AutoMapper;
+using DispatchManager.Data.Models;
 using DispatchManager.Services.DispatchManage;
 using DispatchManager.ViewModel;
 using System.Web.Mvc;
@@ -6,36 +7,40 @@ using System.Web.Mvc;
 namespace DispatchManager.Controllers
 {
     public class DispatchManagerController : Controller
-    { 
+    {
         private IDispatchManager dispatchManager { get; set; }
-        private ITruckAPI truckApi { get; set; } 
-        
-        public DispatchManagerController(IDispatchManager dispatchManager, ITruckAPI truckApi )
+        private ITruckAPI truckApi { get; set; }
+
+        public DispatchManagerController(IDispatchManager dispatchManager, ITruckAPI truckApi)
         {
             this.dispatchManager = dispatchManager;
             this.truckApi = truckApi;
-            
+
         }
 
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             return View();
         }
 
-        public ActionResult EditMultiTruck(string vinNumbers) {
+        public ActionResult EditMultiTruck(string vinNumbers)
+        {
 
             var trucks = dispatchManager.SearchMultiTruck(truckApi, vinNumbers);
-            if(trucks == null){
+            if (trucks == null)
+            {
                 return View();
-            } 
+            }
             return View(trucks);
         }
 
 
         [HttpPost]
-        public JsonResult SaveMultiTruck(Truck truck)
+        public JsonResult SaveMultiTruck(TruckViewModel tv)
         {
             if (ModelState.IsValid)
             {
+                var truck = Mapper.Map<Truck>(tv);
                 var result = dispatchManager.SaveTruck(truck);
                 if (result.Ok)
                 {
@@ -43,7 +48,7 @@ namespace DispatchManager.Controllers
                 }
                 else
                 {
-                    var strErr = string.Join(";", result.Errors); 
+                    var strErr = string.Join(";", result.Errors);
                     return new JsonResult() { Data = strErr };
                 }
             }
@@ -70,24 +75,26 @@ namespace DispatchManager.Controllers
                 }
             }
             return View(model);
-        } 
+        }
 
         [HttpPost]
-        public ActionResult SaveTruck(Truck truck)
+        public ActionResult SaveTruck(TruckViewModel tv)
         {
             if (ModelState.IsValid)
-            { 
+            {
+                var truck = Mapper.Map<Truck>(tv);
                 var result = dispatchManager.SaveTruck(truck);
                 if (result.Ok)
                 {
                     return View("index");
                 }
-                else {
+                else
+                {
                     var strErr = string.Join(";", result.Errors);
                     ModelState.AddModelError("Error:", strErr);
-                }  
-            } 
-            return View(truck); 
-        } 
+                }
+            }
+            return View(tv);
+        }
     }
 }

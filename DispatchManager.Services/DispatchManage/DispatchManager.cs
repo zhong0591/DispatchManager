@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using DispatchManager.Services.Common;
 using System.Collections.Generic;
+using AutoMapper;
 
 namespace DispatchManager.Services.DispatchManage
 {
@@ -28,43 +29,19 @@ namespace DispatchManager.Services.DispatchManage
                     op.Ok = false;
                     op.Errors.Add("Truck name is required!");
                     return op;
-                }
-
+                } 
                 if (truck.Id > 0)
                 {
-                    var existedTruck = uow.Get(truck.Id);
-                    existedTruck.ManufacturerName = truck.ManufacturerName;
-                    existedTruck.TruckName = truck.TruckName;
-                    existedTruck.VinNumber = truck.VinNumber;
-                    existedTruck.Make = truck.Make;
-                    existedTruck.Model = truck.Model;
-                    existedTruck.ModelYear = truck.ModelYear;
-                    existedTruck.EngineModel = truck.EngineModel;
-                    existedTruck.TransmissionSpeeds = truck.TransmissionSpeeds;
-                    existedTruck.Capacity = truck.Capacity;
-                    existedTruck.TransmissionStyle = truck.TransmissionStyle;
-                    existedTruck.Odemetor = truck.Odemetor;
-                    existedTruck.VehicleType = truck.VehicleType;
+                    var existedTruck = uow.Get(truck.Id); 
+                    if (existedTruck != null) {
+                        uow.Detach(existedTruck);
+                        existedTruck = Mapper.Map<Truck>(truck);
+                        uow.Update(existedTruck);
+                    } 
                 }
                 else
                 {
-                    truck = new Truck()
-                    {
-                        ManufacturerName = truck.ManufacturerName,
-                        TruckName = truck.TruckName,
-                        VinNumber = truck.VinNumber,
-                        Make = truck.Make,
-                        Model = truck.Model,
-                        ModelYear = truck.ModelYear,
-                        EngineModel = truck.EngineModel,
-                        TransmissionSpeeds = truck.TransmissionSpeeds,
-                        Capacity = truck.Capacity,
-                        TransmissionStyle = truck.TransmissionStyle,
-                        Odemetor = truck.Odemetor,
-                        VehicleType = truck.VehicleType,
-                    };
-                    uow.Add(truck);
-
+                    uow.Add(truck); 
                 }
                 Uow.Commit();
             }
@@ -162,6 +139,11 @@ namespace DispatchManager.Services.DispatchManage
                 Console.Write(ex.Message);
             }
             return truck;
+        }
+
+        public OpResult SaveTruckViewModel(int truckId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

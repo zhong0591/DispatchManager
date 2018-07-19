@@ -6,7 +6,7 @@ namespace DispatchManager.Services.DispatchManage.Tests
     public class TruckAPITests
     {
         [Test()]
-        public void RetrieveTruckTest()
+        public void Test_Retrieve_Truck_From_Vin_Number()
         {
             ITruckAPI tApi = new TruckAPI();
 

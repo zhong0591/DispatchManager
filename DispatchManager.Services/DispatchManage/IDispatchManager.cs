@@ -11,5 +11,7 @@ namespace DispatchManager.Services.DispatchManage
         List<Truck> SearchMultiTruck(ITruckAPI truckAPI, string vinNbrs);
 
         OpResult SaveTruck(Truck truck);
+
+        OpResult SaveTruckViewModel(int truckId);
     }
 }
