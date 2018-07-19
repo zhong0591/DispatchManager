@@ -134,6 +134,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DispatchManagerSetUp.cs" />
     <Compile Include="DispatchManage\TruckAPITests.cs" />
     <Compile Include="Mocks\TruckUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

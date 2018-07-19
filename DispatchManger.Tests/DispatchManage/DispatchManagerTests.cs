@@ -12,15 +12,15 @@ namespace DispatchManager.Services.DispatchManage.Tests
     public class DispatchManagerTests
     {
 
-        [SetUp]
-        public void Test_SetUp()
+        [OneTimeSetUp]
+        public void AutoMapper_SetUp()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<TruckViewModel, Truck>());
         }
 
         [Test]
         public void Test_Auto_Mapper()
-        {
+        { 
             TruckViewModel tv = new TruckViewModel
             {
                 ManufacturerName = "Manufacturer Name",

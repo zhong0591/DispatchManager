@@ -19,13 +19,18 @@ namespace DispatchManager.Controllers.Tests
         public Mock<IDispatchManager> dispatchManager;
         public Mock<ITruckAPI> truckApi;
         public DispatchManagerController ctrl;
+
+        [OneTimeSetUp]
+        public void AutoMapper_SetUp() {
+            Mapper.Initialize(cfg => cfg.CreateMap<TruckViewModel, Truck>());
+        }
+
         [SetUp]
         public void DispatchManager_SetUp()
         {
             dispatchManager = new Mock<IDispatchManager>();
             truckApi = new Mock<ITruckAPI>(); 
-            ctrl = new DispatchManagerController(dispatchManager.Object, truckApi.Object);
-            Mapper.Initialize(cfg => cfg.CreateMap<TruckViewModel, Truck>()); 
+            ctrl = new DispatchManagerController(dispatchManager.Object, truckApi.Object); 
         }
 
         [Test]
@@ -37,7 +42,8 @@ namespace DispatchManager.Controllers.Tests
 
         [Test]
         public void Test_Save_Truck_Return_View()
-        {  
+        {
+           
             dispatchManager.Setup(foo => foo.SaveTruck(It.IsAny<Truck>())).Returns(new OpResult() { Ok = true });
 
             var tv = new TruckViewModel() { TruckName = "New Name", ActiveSafetySystemNote = "Active Safety System Note" };           
@@ -48,6 +54,7 @@ namespace DispatchManager.Controllers.Tests
         [Test]
         public void Test_Save_Multiple_Truck_Return_View()
         {
+        
             dispatchManager.Setup(foo => foo.SaveTruck(It.IsAny<Truck>())).Returns(new OpResult() { Ok = true});
             var tv = new TruckViewModel() { TruckName = "New Name", ActiveSafetySystemNote = "Active Safety System Note" };
 

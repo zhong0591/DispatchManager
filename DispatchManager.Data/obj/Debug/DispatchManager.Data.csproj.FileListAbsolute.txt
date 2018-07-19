@@ -52,4 +52,3 @@ D:\001_Current\DispatchManager\DispatchManager.Data\bin\Debug\Newtonsoft.Json.xm
 D:\001_Current\DispatchManager\DispatchManager.Data\bin\Debug\AutoMapper.dll
 D:\001_Current\DispatchManager\DispatchManager.Data\bin\Debug\AutoMapper.pdb
 D:\001_Current\DispatchManager\DispatchManager.Data\bin\Debug\AutoMapper.xml
-D:\001_Current\DispatchManager\DispatchManager.Data\obj\Debug\DispatchManager.Data.csprojResolveAssemblyReference.cache
